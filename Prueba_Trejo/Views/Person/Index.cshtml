@@ -1,0 +1,32 @@
+﻿@model List<Prueba_Trejo.Models.ViewPerson.Person>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Personas</h2>
+<div class="row">
+    <div class="col-lg-10">
+        <table class="table table-bordered">
+            <tr>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Identificación</th>
+                <th>Género</th>
+                <th>Fecha de nacimiento</th>
+                <th>Activo</th>
+            </tr>
+            @foreach(var i in Model)
+            {
+                <tr>
+                    <td>@i.name</td>
+                    <td>@i.last_name</td>
+                    <td>@i.code</td>
+                    <td>@i.gender</td>
+                    <td>@i.birth_date</td>
+                    <td>@i.active</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
