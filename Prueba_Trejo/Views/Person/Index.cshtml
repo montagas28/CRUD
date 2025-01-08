@@ -14,16 +14,19 @@
         <br>
         <table class="table table-bordered">
             <tr>
+                <th>#</th>
                 <th>Nombres</th>
                 <th>Apellidos</th>
                 <th>Identificación</th>
                 <th>Género</th>
                 <th>Fecha de nacimiento</th>
                 <th>Activo</th>
+                <th>Opciones</th>
             </tr>
             @foreach (var i in Model)
             {
                 <tr>
+                    <td>@i.id</td>
                     <td>@i.name</td>
                     <td>@i.last_name</td>
                     <td>@i.code</td>
@@ -49,10 +52,19 @@
                     }
                             }
 
-  
+                <td>
+                    <input type="button" value="Eliminar" class="btn btn-danger" onclick="deletePerson(@i.id)"/>
+                    <input type="button" value="Editar" class="btn btn-dark" onclick="document.location.href='@Url.Content("~/Person/editPerson/"+i.id)'"/>
+                </td>
                   </tr>
             }
+        
         </table>
     </div>
 </div>
 
+<script>
+    function deletePerson(id) {
+
+    }
+</script>

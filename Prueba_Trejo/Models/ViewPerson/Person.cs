@@ -9,6 +9,7 @@ namespace Prueba_Trejo.Models.ViewPerson
 {
     public class Person
     {
+        public int id { get; set; }
         [Required]
         [StringLength(50,ErrorMessage="el {0} debe tener al menos {1} caracteres",MinimumLength =1)]
         [Display(Name ="Nombres")]

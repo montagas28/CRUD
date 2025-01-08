@@ -1,0 +1,58 @@
+﻿@model Prueba_Trejo.Models.ViewPerson.Person
+@{
+    ViewBag.Title = "Editar Persona";
+}
+
+<h2>Editar Persona</h2>
+<div class="row">
+    <div class="col-md-10">
+        @using (Html.BeginForm("editPerson", "Person", FormMethod.Post, new { role = "form", @class = "" }))
+        {
+            @Html.HiddenFor(d => d.id)
+            @Html.AntiForgeryToken()
+            @Html.ValidationMessage("error", new { @class = "text-danger" })
+            @Html.LabelFor(d => d.name)
+            @Html.TextBoxFor(d => d.name, new { @class = "form-control" })
+            @Html.ValidationMessage("name", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.last_name)
+            @Html.TextBoxFor(d => d.last_name, new { @class = "form-control" })
+            @Html.ValidationMessage("last_name", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.code)
+            @Html.TextBoxFor(d => d.code, new { @class = "form-control" })
+            @Html.ValidationMessage("code", new { @class = "text-danger" })
+
+            <br>
+            @Html.LabelFor(d => d.gender)
+            <br>
+            @Html.DropDownListFor(d => d.gender, new List<SelectListItem> {
+            new SelectListItem{Text="Masculino",Value="m" },
+            new SelectListItem{Text="Femenino",Value="f"}
+            })
+
+            <br>
+            @Html.LabelFor(d => d.birth_date)
+
+
+            <br>
+             
+                
+            
+            @Html.TextBoxFor(d => d.birth_date, new { @type = "date" , @class="form-control", @Value= Model.birth_date!=null?Model.birth_date.Value.ToString("yyyy-MM-dd"):""})
+
+            <br>
+            @Html.LabelFor(d => d.active)
+            @Html.CheckBoxFor(d => d.active, true);
+
+
+
+            <div style="text-align:right;">
+                <input type="submit" class="btn btn-success" value="Guardar" />
+
+            </div>
+        }
+    </div>
+</div>
+
+

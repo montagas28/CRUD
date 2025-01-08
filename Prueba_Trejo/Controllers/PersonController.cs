@@ -19,6 +19,7 @@ namespace Prueba_Trejo.Controllers
                 lst = (from d in db.person
                        select new Person
                        {
+                           id=d.id,
                            name = d.name,
                            last_name = d.last_name,
                            code = d.code,
@@ -55,6 +56,48 @@ namespace Prueba_Trejo.Controllers
 
             }
             return Redirect(Url.Content("~/Person/"));
+        }
+
+        
+        
+        public ActionResult editPerson(int id)
+        {
+            Person person = new Person();
+            using(var db=new Prueba_TrejoEntities()) { 
+                var obj=db.person.Find(id);
+                person.id = obj.id;
+                person.name=obj.name;
+                person.last_name = obj.last_name;
+                person.code = obj.code;
+                person.gender = obj.gender;
+                person.birth_date = obj.birth_date;
+                person.active = obj.active == 1 ? true : false;//obj.active;//(byte?)(obj.active ? 1 : 0);
+            }
+            return View(person);
+        }
+
+        [HttpPost]
+        public ActionResult editPerson(Person person)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(person);
+            }
+            using (var db = new Prueba_TrejoEntities())
+            {
+                var obj = db.person.Find(person.id);
+                obj.name = person.name;
+                obj.last_name = person.last_name;
+                obj.code = person.code;
+                obj.gender = person.gender;
+                obj.birth_date = person.birth_date;
+
+                obj.active = (byte?)(person.active ? 1 : 0);
+                db.Entry(obj).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+            }
+            return Redirect(Url.Content("~/Person/"));
+
         }
     }
 }
