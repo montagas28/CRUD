@@ -24,7 +24,7 @@ namespace Prueba_Trejo.Controllers
                            code = d.code,
                            gender = d.gender,
                            birth_date = d.birth_date,
-                           active = d.active,
+                           active = d.active==1?true:false,
                        }).ToList();
             }
             return View(lst);
@@ -44,6 +44,11 @@ namespace Prueba_Trejo.Controllers
             {
                 person oPerson = new person();
                 oPerson.name = obj.name;
+                oPerson.last_name = obj.last_name;
+                oPerson.code = obj.code;
+                oPerson.gender = obj.gender;
+                oPerson.birth_date = obj.birth_date;
+                oPerson.active = (byte?)(obj.active ? 1 : 0);
                 //oPerson.last_name
                 db.person.Add(oPerson);
                 db.SaveChanges();

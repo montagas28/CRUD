@@ -9,7 +9,9 @@
         <input type="button" class="btn btn-primary" onclick="document.location.href='@Url.Content("~/Person/addPerson")'" value="Nuevo"/>
     </div>
     
+    
     <div class="col-lg-10">
+        <br>
         <table class="table table-bordered">
             <tr>
                 <th>Nombres</th>
@@ -19,16 +21,36 @@
                 <th>Fecha de nacimiento</th>
                 <th>Activo</th>
             </tr>
-            @foreach(var i in Model)
+            @foreach (var i in Model)
             {
                 <tr>
                     <td>@i.name</td>
                     <td>@i.last_name</td>
                     <td>@i.code</td>
-                    <td>@i.gender</td>
-                    <td>@i.birth_date</td>
-                    <td>@i.active</td>
-                </tr>
+                    @{
+                if (i.gender == "m")
+                {
+                            <td>Masculino</td>
+                }
+                else
+                {
+                    <td>Femenino</td>
+                }
+                    }
+                    <td>@Html.DisplayFor(model=>i.birth_date)</td>
+                    @{
+                    if (i.active)
+                    {
+                        <td>Si</td>
+                     }
+                     else
+                    {
+                        <td>No</td>
+                    }
+                            }
+
+  
+                  </tr>
             }
         </table>
     </div>
