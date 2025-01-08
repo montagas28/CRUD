@@ -53,7 +53,7 @@
                             }
 
                 <td>
-                    <input type="button" value="Eliminar" class="btn btn-danger" onclick="deletePerson(@i.id)"/>
+                    <input type="button" value="Eliminar" class="btn btn-danger" onclick="document.location.href='@Url.Content("~/Person/deletePerson/"+i.id)'"/>
                     <input type="button" value="Editar" class="btn btn-dark" onclick="document.location.href='@Url.Content("~/Person/editPerson/"+i.id)'"/>
                 </td>
                   </tr>
@@ -62,9 +62,3 @@
         </table>
     </div>
 </div>
-
-<script>
-    function deletePerson(id) {
-
-    }
-</script>

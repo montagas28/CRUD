@@ -99,5 +99,22 @@ namespace Prueba_Trejo.Controllers
             return Redirect(Url.Content("~/Person/"));
 
         }
+        public ActionResult deletePerson(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(id);
+            }
+            using (var db=new Prueba_TrejoEntities())
+            {
+                
+                var obj = db.person.Find(id);
+                db.person.Remove(obj);
+                db.SaveChanges();
+            }
+            return Redirect(Url.Content("~/Person/"));
+        }
+
+        
     }
 }
