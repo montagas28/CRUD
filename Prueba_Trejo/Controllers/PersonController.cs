@@ -105,16 +105,31 @@ namespace Prueba_Trejo.Controllers
             {
                 return View(id);
             }
+            Person person=new Person();
             using (var db=new Prueba_TrejoEntities())
             {
                 
                 var obj = db.person.Find(id);
+                person.name = obj.name;
+                person.last_name=obj.last_name;
+            }
+            return View(person);
+        }
+        [HttpPost]
+        public ActionResult deletePerson(Person person)
+        {
+            
+            using (var db = new Prueba_TrejoEntities())
+            {
+
+                var obj = db.person.Find(person.id);
+                person.name = obj.name;
+                person.last_name = obj.last_name;
                 db.person.Remove(obj);
                 db.SaveChanges();
             }
             return Redirect(Url.Content("~/Person/"));
         }
-
         
     }
 }
