@@ -14,20 +14,42 @@ namespace Prueba_Trejo.Controllers
         public ActionResult Index()
         {
             List<Person> lst = null;
-            using (Prueba_TrejoEntities db =  new Prueba_TrejoEntities())
+            using (Prueba_TrejoEntities db = new Prueba_TrejoEntities())
             {
-                lst=(from d in db.person
-                    select new Person
-                    {
-                        name=d.name,
-                        last_name=d.last_name,
-                        code=d.code,
-                        gender=d.gender,
-                        birth_date=d.birth_date,
-                        active=d.active,
-                    }).ToList();
+                lst = (from d in db.person
+                       select new Person
+                       {
+                           name = d.name,
+                           last_name = d.last_name,
+                           code = d.code,
+                           gender = d.gender,
+                           birth_date = d.birth_date,
+                           active = d.active,
+                       }).ToList();
             }
             return View(lst);
+        }
+
+        public ActionResult addPerson()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult addPerson(Person obj)
+        {
+            if (!ModelState.IsValid) {
+                return View(obj);
+            }
+            using (var db = new Prueba_TrejoEntities())
+            {
+                person oPerson = new person();
+                oPerson.name = obj.name;
+                //oPerson.last_name
+                db.person.Add(oPerson);
+                db.SaveChanges();
+
+            }
+            return Redirect(Url.Content("~/Person/"));
         }
     }
 }
