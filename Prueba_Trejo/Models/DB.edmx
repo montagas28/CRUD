@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Prueba_TrejoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Prueba_TrejoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="person">
           <Key>
             <PropertyRef Name="id" />
@@ -18,11 +18,11 @@
           <Property Name="password" Type="varchar" MaxLength="100" />
           <Property Name="active" Type="tinyint" />
         </EntityType>
+        <Function Name="persona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="Prueba_TrejoModelStoreContainer">
           <EntitySet Name="person" EntityType="Self.person" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Prueba_TrejoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -41,7 +41,18 @@
         </EntityType>
         <EntityContainer Name="Prueba_TrejoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="person" EntityType="Self.person" />
+          <FunctionImport Name="persona" ReturnType="Collection(Prueba_TrejoModel.persona_Result)" />
         </EntityContainer>
+        <ComplexType Name="persona_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="code" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="gender" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="birth_date" Nullable="true" />
+          <Property Type="String" Name="password" Nullable="true" MaxLength="100" />
+          <Property Type="Byte" Name="active" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -62,6 +73,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="persona" FunctionName="Prueba_TrejoModel.Store.persona">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Prueba_TrejoModel.persona_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="active" ColumnName="active" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

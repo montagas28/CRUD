@@ -10,6 +10,9 @@ namespace Prueba_Trejo.Controllers
 {
     public class PersonController : Controller
     {
+
+        private List<person> persons;
+
         // GET: Person
         public ActionResult Index()
         {
@@ -130,6 +133,19 @@ namespace Prueba_Trejo.Controllers
             }
             return Redirect(Url.Content("~/Person/"));
         }
+
+        public ActionResult procedurePerson()
+        {
+            //List<Person> persons = null;
+            
+            using (Prueba_TrejoEntities db= new Prueba_TrejoEntities())
+            {
+                persons=db.Database.SqlQuery<person>("persona").ToList();
+               
+            }
+                return View(persons);
+        }
+
         
     }
 }

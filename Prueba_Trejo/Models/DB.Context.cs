@@ -12,6 +12,8 @@ namespace Prueba_Trejo.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class Prueba_TrejoEntities : DbContext
     {
@@ -26,5 +28,10 @@ namespace Prueba_Trejo.Models
         }
     
         public virtual DbSet<person> person { get; set; }
+    
+        public virtual ObjectResult<persona_Result> persona()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<persona_Result>("persona");
+        }
     }
 }

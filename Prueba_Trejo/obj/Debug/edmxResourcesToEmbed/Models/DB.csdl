@@ -15,5 +15,16 @@
   </EntityType>
   <EntityContainer Name="Prueba_TrejoEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="person" EntityType="Self.person" />
+    <FunctionImport Name="persona" ReturnType="Collection(Prueba_TrejoModel.persona_Result)" />
   </EntityContainer>
+  <ComplexType Name="persona_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="last_name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="code" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="gender" Nullable="true" MaxLength="1" />
+    <Property Type="DateTime" Name="birth_date" Nullable="true" />
+    <Property Type="String" Name="password" Nullable="true" MaxLength="100" />
+    <Property Type="Byte" Name="active" Nullable="true" />
+  </ComplexType>
 </Schema>

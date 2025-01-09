@@ -151,6 +151,9 @@
     <Compile Include="Models\person.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\persona_Result.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewPerson\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -226,6 +229,7 @@
     <Content Include="Views\Person\addPerson.cshtml" />
     <Content Include="Views\Person\editPerson.cshtml" />
     <Content Include="Views\Person\deletePerson.cshtml" />
+    <Content Include="Views\Person\procedurePerson.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
