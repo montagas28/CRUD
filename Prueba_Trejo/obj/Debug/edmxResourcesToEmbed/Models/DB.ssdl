@@ -13,6 +13,7 @@
     <Property Name="password" Type="varchar" MaxLength="100" />
     <Property Name="active" Type="tinyint" />
   </EntityType>
+  <Function Name="persona" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="Prueba_TrejoModelStoreContainer">
     <EntitySet Name="person" EntityType="Self.person" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
