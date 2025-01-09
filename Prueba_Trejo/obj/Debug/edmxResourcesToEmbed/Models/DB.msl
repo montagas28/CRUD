@@ -15,5 +15,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="persona" FunctionName="Prueba_TrejoModel.Store.persona">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Prueba_TrejoModel.persona_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

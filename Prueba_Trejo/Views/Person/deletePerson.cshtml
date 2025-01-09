@@ -1,0 +1,24 @@
+﻿@model Prueba_Trejo.Models.ViewPerson.Person
+@{
+    ViewBag.Title = "Eliminar Persona";
+}
+
+<h3>Eliminar a @Model.name?</h3>
+<div class="row">
+    <div class="col-md-10">
+        @using (Html.BeginForm("deletePerson", "Person", FormMethod.Post, new { role = "form", @class = "" }))
+        {
+            @Html.HiddenFor(d => d.id)
+            @Html.AntiForgeryToken()
+
+        <div style="text-align:right;">
+            <input type="submit" class="btn btn-danger" value="Eliminar" />
+            <input type="button" class="btn btn-light" value="Cancelar" onclick="document.location.href='@Url.Content("~/Person/Index")'"/>
+        </div>
+        }
+    </div>
+</div>
+
+
+
+

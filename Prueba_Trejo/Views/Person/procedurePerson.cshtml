@@ -1,0 +1,65 @@
+﻿
+@model List<Prueba_Trejo.Models.person>
+@{
+    ViewBag.Title = "procedurePerson";
+}
+
+<h2>procedurePerson</h2>
+<div class="row">
+    <div class="col-md-10">
+        <input type="button" class="btn btn-primary" onclick="document.location.href='@Url.Content("~/Person/addPerson")'" value="Nuevo" />
+    </div>
+
+
+    <div class="col-lg-10">
+        <br>
+        <table class="table table-bordered">
+            <tr>
+                <th>#</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Identificación</th>
+                <th>Género</th>
+                <th>Fecha de nacimiento</th>
+
+                <th>Password</th>
+                <th>Activo</th>
+            </tr>
+            @foreach (var i in Model)
+            {
+                <tr>
+                    <td>@i.id</td>
+                    <td>@i.name</td>
+                    <td>@i.last_name</td>
+                    <td>@i.code</td>
+                    @{
+                        if (i.gender == "m")
+                        {
+                            <td>Masculino</td>
+                        }
+                        else
+                        {
+                            <td>Femenino</td>
+                        }
+                    }
+                    <td>@Html.DisplayFor(model => i.birth_date)</td>
+                    <td>@i.password</td>
+                    @{
+                        if (i.active==1)
+                        {
+                            <td>Si</td>
+                        }
+                        else
+                        {
+                            <td>No</td>
+                        }
+                    }
+
+                    
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
